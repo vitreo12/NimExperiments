@@ -3,6 +3,17 @@ type
         data : seq[T]
 
 #See https://github.com/nim-lang/RFCs/issues/85 for a discussion about typedesc vs generics
+
+#[
+    Guidelines to use generics syntax [T] or typedesc:
+        1) Use generic types for generic value params, where the types will be inferred from the call-site (e.g. one of the arguments).
+        2) Use typedesc for all params that must be explicitly specified by the user, or need a default value.
+]#
+
+#Alternative syntaxes are:
+#T : typdedesc = float
+#T : type = type float
+#T : type = float
 proc newMyVector(size : Natural = 0, T : typedesc = typedesc[float]) : MyVector[T] =
     result = MyVector[T](data : newSeq[T](size))
 
